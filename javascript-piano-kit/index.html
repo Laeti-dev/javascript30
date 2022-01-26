@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>JS piano kit</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="keys">
+    <div data-key= "65" class="key">
+      <kbd>A</kbd>
+      <span class="sound">Do</span>
+    </div>
+    <div data-key="83" class="key">
+      <kbd>S</kbd>
+      <span class="sound">Ré</span>
+    </div>
+    <div data-key="68" class="key">
+      <kbd>D</kbd>
+      <span class="sound">Mi</span>
+    </div>
+    <div data-key="70" class="key">
+      <kbd>F</kbd>
+      <span class="sound">Fa</span>
+    </div>
+    <div data-key="71" class="key">
+      <kbd>G</kbd>
+      <span class="sound">Sol</span>
+    <!-- </div>
+    <div data-key="74" class="key">
+      <kbd>J</kbd>
+      <span class="sound">La</span>
+    </div>
+    <div data-key="75" class="key">
+      <kbd>K</kbd>
+      <span class="sound">Si</span>
+    </div> -->
+    <!-- <div data-key="76" class="key">
+      <kbd>L</kbd>
+      <span class="sound">G</span>
+    </div> -->
+  </div>
+
+  <audio data-key="65" src="sounds/68441__pinkyfinger__piano-c.wav"></audio>
+  <audio data-key="83" src="sounds/68442__pinkyfinger__piano-d.wav"></audio>
+  <audio data-key="68" src="sounds/68443__pinkyfinger__piano-e.wav"></audio>
+  <audio data-key="70" src="sounds/68446__pinkyfinger__piano-f.wav"></audio>
+  <audio data-key="71" src="sounds/68448__pinkyfinger__piano-g.wav"></audio>
+
+  <script>
+    window.addEventListener('keydown', function (event) {
+      const audio = document.querySelector(`audio[data-key="${event.keyCode}"]`);
+      if(!audio) return;
+      audio.currentTime = 0; //to restart the audio at 0 when pressiong key another time
+      audio.play();
+    })
+  </script>
+</body>
+
+</html>
