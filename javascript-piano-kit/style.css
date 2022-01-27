@@ -26,11 +26,22 @@ kbd {
   justify-content: center;
   text-align: center;
   border: 4px solid whitesmoke;
-  transition: all 1s;
+  transition: all 0.5s;
 }
 
 .playing {
   border: 4px solid rgb(245, 245, 245);
   background-color: rgb(245, 245, 245, 0.5);
   transform: scale(1.1);
+}
+
+footer {
+  display: flex;
+  justify-content: space-around;
+}
+
+a{
+  text-decoration: none;
+  color: deeppink;
+  text-shadow: black;
 }

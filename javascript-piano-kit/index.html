@@ -4,6 +4,7 @@
 <head>
   <title>JS piano kit</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="favicon.png">
 </head>
 
 <body>
@@ -40,7 +41,12 @@
       <kbd>L</kbd>
       <span class="sound">G</span>
     </div> -->
+    </div>
   </div>
+  <footer>
+    <p>Bg picture: <a href="https://unsplash.com/@davidpisnoy">David Pisnoy</a></p>
+    <p>Sound: <a href="https://freesound.org/people/pinkyfinger/packs/4409/">freesound</a></p>
+  </footer>
 
   <audio data-key="65" src="sounds/68441__pinkyfinger__piano-c.wav"></audio>
   <audio data-key="83" src="sounds/68442__pinkyfinger__piano-d.wav"></audio>
@@ -49,12 +55,25 @@
   <audio data-key="71" src="sounds/68448__pinkyfinger__piano-g.wav"></audio>
 
   <script>
-    window.addEventListener('keydown', function (event) {
-      const audio = document.querySelector(`audio[data-key="${event.keyCode}"]`);
-      if(!audio) return;
+
+    function playSound() {
+      const audio = document.querySelector(`audio[data-key="${event.keyCode}"]`); //selecting audio tag
+      const key = document.querySelector(`.key[data-key="${event.keyCode}"]`); //selecting element with .key clacss
+      if (!audio) return; // doesn't retrun nill for other keys
       audio.currentTime = 0; //to restart the audio at 0 when pressiong key another time
       audio.play();
-    })
+      key.classList.add('playing'); //add the class .playing when key is pressed
+    };
+
+  function removeTransition(event) {
+    if (event.propertyName !== "transform") return;
+    console.log(event.propertyName)
+    this.classList.remove('playing')
+  };
+  const keys = document.querySelectorAll('.key'); //select all the elements with the class .key and stores it in an array
+  keys.forEach(key => key.addEventListener('transitionend', removeTransition)); // for each key fron the array, we want to listen the transition, and when it<s done, we want to remove it
+  window.addEventListener('keydown', playSound);
+
   </script>
 </body>
 
