@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CSS & JS clock</title>
+  </head>
+  <body>
+
+    <div class="clock">
+      <div class="clock-face">
+        <div class="hand hour-hand"></div>
+        <div class="hand min-hand"></div>
+        <div class="hand second-hand"></div>
+      </div>
+    </div>
+
+    <style>
+      html {
+
+      }
+
+      body{
+        max-width: 100%;
+        max-height: 500px;
+        background-image: url(https://images.unsplash.com/photo-1602785164803-9a6cf611f3b6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1708&q=80);
+        background-size: cover;
+        display: flex;
+        flex: 1;
+        min-height: 100vh;
+        align-items: center;
+      }
+      .clock {
+        width: 12rem;
+        height: 12rem;
+        border: 20px solid transparent;
+        border-radius: 50%;
+        margin-left: 22rem;
+        margin-top: 17rem;
+        position: sticky;
+        padding: 3rem;
+      }
+
+      .clock-face {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        transform: translateY(-3px);
+      }
+
+      .hand {
+        width: 137px;
+        height: 6px;
+        background: #00B3CC;
+        position: absolute;
+        top: 53%;
+        left: -41px;
+        transform-origin: 100%; /*place origine on absisse axe*/
+        transform: rotate(90deg);
+        transition: all 0.05s;
+        transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+      }
+
+      .brown-hand {
+        background-color: rgb(173, 113, 85);
+      }
+
+    </style>
+
+    <script>
+      const secondHand = document.querySelector('.second-hand');
+      const minuteHand = document.querySelector('.min-hand');
+      const hourHand = document.querySelector('.hour-hand')
+
+      function setDate() {
+        const now = new Date();
+
+        const seconds = now.getSeconds();
+        const secondsDegrees = ((seconds / 60) * 360) + 90;
+        secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
+
+        // if (180 < secondsDegrees < 360) {
+        //   secondHand.style.background = '#AD7155';
+        // };
+
+        const minutes = now.getMinutes();
+        const minutesDegrees = ((minutes / 60) * 360) + 90;
+        minuteHand.style.transform = `rotate(${minutesDegrees}deg)`;
+
+        // function handColor (){
+        //   if (180 < minutesDegrees < 450) {
+        //   minuteHand.classList.toggle("brown-hand");
+        //   }
+        // };
+
+        const hours = now.getHours();
+        const hoursDegrees = ((hours / 60) * 360) + 90;
+        hourHand.style.transform = `rotate(${hoursDegrees}deg)`;
+
+        // if (180 < hoursDegrees < 360) {
+        //   hourHand.style.background = '#AD7155';
+        // };
+      }
+      setInterval(setDate, 1000); //to set our intervalle to seconds
+
+    </script>
+  </body>
+</html>
