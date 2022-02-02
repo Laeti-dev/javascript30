@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Scoped CSS vraibles & JS</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+  </head>
+  <body>
+<h2>Update CSS variables with <span class="h1">js</span></h2>
+<div class="controls">
+  <label for="spacing">Spacing:</label>
+  <input type="range" name="spacing" min="10" max="200" value="10" data-sizing="px">
+
+  <label for="blur">Blur:</label>
+  <input type="range" name="blur" min="0" max="25" value="10" data-sizing="px">
+
+  <label for="base">Background color:</label>
+  <input type="color" name="base" value="#18344A">
+
+  <img src="https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="sunset on the beach">
+
+  <style>
+    /* declare variables on elements :root is the highest level to declare on */
+    :root{
+      --base: #ffc600;
+      --spacing: 10px;
+      --blur: 10px;
+    }
+/* after creating the variable, use it on css */
+    img {
+      padding: var(--spacing);
+      background: var(--base);
+      filter: blur(var(--blur));
+      margin-top: 24px;
+      display: block;
+      width:auto;
+      height: 75vh;
+      }
+
+      .h1{
+        color: var(--base);
+      }
+
+    body{
+      text-align: center;
+    }
+
+    body{
+      background-color: #18344A;
+      color: white;
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: 100;
+      font-size: 50px;
+    }
+
+    .controls {
+      width: 100vw;
+      margin-bottom: 50px;
+    }
+  </style>
+</div>
+
+    <script>
+      // select all elements on the page :
+      const inputs = document.querySelectorAll('.controls input');
+      // gives an nodeList which gives less working methods to work with
+      // sometimes it might be interesting to convert it into an array
+
+      function handleUpdate() {
+        // we need to find the suffix of our values
+        // dataset is an object already which don't need any attributes selectors
+        const suffix = this.dataset.sizing || '' ; //beauce color doesn't have a dataset
+        // console.log(suffix) will add the suffix to the value on the cnsole
+        // then time to update the actual variable
+        // first we nee to update the var by selecting our entire document which is the :root and set a property of base, spacing or blur
+        // to do that we'll use our input tag, name attibute
+        // console.log(this.name) will inform the name
+        document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
+        // this will change the CSS according to the new value but it doesn't have the px
+        // that's why will use the suffix variable
+      }
+
+      inputs.forEach(input => input.addEventListener('change', handleUpdate));
+      inputs.forEach(input => input.addEventListener('mousemove', handleUpdate));
+
+    </script>
+  </body>
+</html>
