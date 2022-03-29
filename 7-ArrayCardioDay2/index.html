@@ -47,9 +47,28 @@
       //     return true
       //   }
       // }); REFACTORED BELOW
-      const comment = comments.find( comment => (comment.id == 456789 ));
+      const comment = comments.find( comment => (comment.id === 456789 ));
 
       console.log(comment)
+
+      // .findindex()
+      const index = comments.findIndex( comment => ( comment.id === 456789 ));
+      console.log(index)
+
+      // after finding the index, we can operate on the wanted item
+      // delete it for example:
+      // comments.splice(index, 1);
+      // we can check the new array on our console with
+      // console.table(comments);
+      // but it is more common to create a new array with changed items
+      // creates a new array of the comments where we got rid of the one we wanted to delete
+      const newComments = [
+        ...comments.slice(0, index),
+        ...comments.slice(index + 1)
+        // don't forget to spread (...) to avoid getting an array of two arrays
+
+      ];
+      console.table(newComments);
     </script>
   </body>
 </html>
