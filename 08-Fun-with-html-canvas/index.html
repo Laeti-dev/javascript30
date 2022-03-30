@@ -6,6 +6,51 @@
   </head>
   <body>
     <canvas id="draw" width="800" height="800"></canvas>
-    <script src="" async defer></script>
+    <script>
+      // #1 grab the canvas
+      const canvas = document.querySelector('#draw');
+      // #2 need to grab the context - it's a bloc of pixel on which we need to draw
+      // but we don't draw directly on it, we draw on the context
+      const ctx = canvas.getContext('2d');
+      // by default the canvas will be the size we defined (800px), if we want to change it to fit the size of the window :
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      // when we draw on smthg we need to choose a color
+      ctx.strokeStyle = '#BADA55';
+      // and choose if the end of the line should be squared off or rounded
+      ctx.lineJoin = 'round';
+      ctx.lineCap = 'round';
+
+      // #3 we need to set  that when not clicking = not drawing
+      let isDrawing = false;
+      let lastX = 0;
+      let lastY = 0;
+
+      function draw(e) {
+        if(!isDrawing) return; // it stops the fctn of running when they are not moused down
+        // and for this we need to add a new event listener for when the mouse is down
+        console.log(e)
+        // #4 the drawing
+        ctx.beginPath();
+        // (#4) we need to start with an X and a Y then move with an X and a Y
+        ctx.moveTo(lastX, lastY);
+        // thanks to the even listener on our mouse click, we take the offsets info
+        ctx.lineTo(e.offSetX, e.offsetY);
+        ctx.stroke();
+      }
+
+      canvas.addEventListener('mousemove', draw);
+      // when the mouse is down (#3)
+      canvas.addEventListener('mousedown', () => isDrawing = true)
+      canvas.addEventListener('mouseup', () => isDrawing = false)
+      canvas.addEventListener('mouseout', () => isDrawing = false) // for when the mouse is leaving the window
+    // from now, moving the mouse around is not tacken in consideration
+    // only if we click(#3)
+    </script>
+    <style>
+      html, body {
+        margin:0;
+      }
+    </style>
   </body>
 </html>
