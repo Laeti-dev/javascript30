@@ -16,10 +16,11 @@
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
       // when we draw on smthg we need to choose a color
-      ctx.strokeStyle = '#BADA55';
+      ctx.strokeStyle = 'blue';
       // and choose if the end of the line should be squared off or rounded
       ctx.lineJoin = 'round';
       ctx.lineCap = 'round';
+      ctx.lineWidth = '50px'
 
       // #3 we need to set  that when not clicking = not drawing
       let isDrawing = false;
@@ -37,11 +38,23 @@
         // thanks to the even listener on our mouse click, we take the offsets info
         ctx.lineTo(e.offSetX, e.offsetY);
         ctx.stroke();
+        // (#4) but we set our lastX and Y to 0, sot :
+        // lastX = e.offSetX;
+        // lastY = e.offsetY;
+        // these two lines can be written in one by "destructuring an array"
+        [lastX, lastY] =  [e.offSetX, e.offsetY]
+        // at that point, the drawing starts from 0 and next drawing starts from previous offset points
+        // we place the event listener mousedown at the top and create a block
+
       }
 
+      canvas.addEventListener('mousedown', (e) => {
+        isDrawing = true;
+        // (#4) has to update our lasX and Y
+        [lastX, lastY] = [e.offSetX, e.offsetY];
+      });
       canvas.addEventListener('mousemove', draw);
       // when the mouse is down (#3)
-      canvas.addEventListener('mousedown', () => isDrawing = true)
       canvas.addEventListener('mouseup', () => isDrawing = false)
       canvas.addEventListener('mouseout', () => isDrawing = false) // for when the mouse is leaving the window
     // from now, moving the mouse around is not tacken in consideration
