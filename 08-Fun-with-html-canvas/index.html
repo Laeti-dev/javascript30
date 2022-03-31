@@ -8,7 +8,7 @@
     <canvas id="draw" width="800" height="800"></canvas>
     <script>
       // #1 grab the canvas
-      const canvas = document.querySelector('#draw');
+      const canvas = document.getElementById('draw');
       // #2 need to grab the context - it's a bloc of pixel on which we need to draw
       // but we don't draw directly on it, we draw on the context
       const ctx = canvas.getContext('2d');
@@ -16,11 +16,11 @@
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
       // when we draw on smthg we need to choose a color
-      ctx.strokeStyle = 'blue';
+      ctx.strokeStyle = '#BADA55';
       // and choose if the end of the line should be squared off or rounded
       ctx.lineJoin = 'round';
       ctx.lineCap = 'round';
-      ctx.lineWidth = '50px'
+      ctx.lineWidth = 50 ;
 
       // #3 we need to set  that when not clicking = not drawing
       let isDrawing = false;
@@ -28,15 +28,15 @@
       let lastY = 0;
 
       function draw(e) {
-        if(!isDrawing) return; // it stops the fctn of running when they are not moused down
+        if (!isDrawing) return; // it stops the fctn of running when the mouse is not downdown
         // and for this we need to add a new event listener for when the mouse is down
-        console.log(e)
+        console.log(e);
         // #4 the drawing
         ctx.beginPath();
         // (#4) we need to start with an X and a Y then move with an X and a Y
         ctx.moveTo(lastX, lastY);
         // thanks to the even listener on our mouse click, we take the offsets info
-        ctx.lineTo(e.offSetX, e.offsetY);
+        ctx.lineTo(e.offsetX, e.offsetY);
         ctx.stroke();
         // (#4) but we set our lastX and Y to 0, sot :
         // lastX = e.offSetX;
@@ -55,8 +55,8 @@
       });
       canvas.addEventListener('mousemove', draw);
       // when the mouse is down (#3)
-      canvas.addEventListener('mouseup', () => isDrawing = false)
-      canvas.addEventListener('mouseout', () => isDrawing = false) // for when the mouse is leaving the window
+      canvas.addEventListener('mouseup', () => isDrawing = false);
+      canvas.addEventListener('mouseout', () => isDrawing = false); // for when the mouse is leaving the window
     // from now, moving the mouse around is not tacken in consideration
     // only if we click(#3)
     </script>
