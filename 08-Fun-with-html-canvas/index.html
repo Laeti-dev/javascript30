@@ -29,6 +29,7 @@
       // #5 we want the color effect (mothereffinghsl.com) so we need to set the hue to 0 first
       let hue = 0;
       // as we draw we want the stroke to change -> look function
+      let direction = true
 
       function draw(e) {
         if (!isDrawing) return; // it stops the fctn of running when the mouse is not downdown
@@ -56,6 +57,16 @@
         if (hue > 360) {
           hue = 0;
         };
+        // changing the width of our stroke while drawing
+        if (ctx.lineWidth >= 100 || ctx.lineWidth <= 1){
+          // flip the direction
+          direction = !direction;
+        }
+        if (direction) {
+          ctx.lineWidth++;
+        } else {
+          ctx.lineWidth--;
+        }
       };
 
       canvas.addEventListener('mousedown', (e) => {
