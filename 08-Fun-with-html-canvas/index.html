@@ -26,11 +26,16 @@
       let isDrawing = false;
       let lastX = 0;
       let lastY = 0;
+      // #5 we want the color effect (mothereffinghsl.com) so we need to set the hue to 0 first
+      let hue = 0;
+      // as we draw we want the stroke to change -> look function
 
       function draw(e) {
         if (!isDrawing) return; // it stops the fctn of running when the mouse is not downdown
         // and for this we need to add a new event listener for when the mouse is down
         console.log(e);
+        // #5 setting the color of the stroke to change then increment it (see down)
+        ctx.strokeStyle = `hsl(${hue},100%, 50%)`;
         // #4 the drawing
         ctx.beginPath();
         // (#4) we need to start with an X and a Y then move with an X and a Y
@@ -45,8 +50,13 @@
         [lastX, lastY] =  [e.offSetX, e.offsetY]
         // at that point, the drawing starts from 0 and next drawing starts from previous offset points
         // we place the event listener mousedown at the top and create a block
-
-      }
+        // #5 ncrement the hue everytime we do a stroke
+        hue++;
+        // but circle around and increasing the hue value so we can set up back to 0
+        if (hue > 360) {
+          hue = 0;
+        };
+      };
 
       canvas.addEventListener('mousedown', (e) => {
         isDrawing = true;
@@ -59,6 +69,9 @@
       canvas.addEventListener('mouseout', () => isDrawing = false); // for when the mouse is leaving the window
     // from now, moving the mouse around is not tacken in consideration
     // only if we click(#3)
+
+    // #5 the hsl hue saturation lightness
+    //
     </script>
     <style>
       html, body {
