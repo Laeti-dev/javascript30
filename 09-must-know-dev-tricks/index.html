@@ -6,7 +6,7 @@
     <title>Dev tricks</title>
   </head>
   <body>
-    <p>Some console.log usefull </p>
+    <p >Some console.log usefull </p>
     <script>
       // regular
       console.log('hello');
@@ -27,6 +27,31 @@
 
       // info
       console.info ('indicates some stuff')
+
+      // testing first part is what we wanna test, second is what it displays if it fails
+      console.assert( 1 === 1, 'That is wrong')
+
+      const p = document.querySelector('p');
+      console.assert(p.classList.contains('test'),'Not there!');
+
+      // clearing
+      console.clear();
+
+      // viewing DOM element
+      console.dir(p);
+
+      console.clear();
+
+      // grouping things together
+      const dogs = [ {name: 'Toutou', age: 5}, {name: 'Minou', age:2}]
+
+      dogs.forEach(dog => {
+        console.groupCollapsed(`${dog.name}`);
+        console.log(`this is ${dog.name}`);
+        console.log(`${dog.name} is ${dog.age} y.o`);
+        console.log(`${dog.name} is ${dog.age * 7} dog y.o.`);
+        console.groupEnd(`${dog.name}`);
+      });
     </script>
   </body>
 </html>
