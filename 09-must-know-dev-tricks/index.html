@@ -6,7 +6,7 @@
     <title>Dev tricks</title>
   </head>
   <body>
-    <p >Some console.log usefull </p>
+    <p >Some usefull console.thing </p>
     <script>
       // regular
       console.log('hello');
@@ -52,6 +52,21 @@
         console.log(`${dog.name} is ${dog.age * 7} dog y.o.`);
         console.groupEnd(`${dog.name}`);
       });
+
+      // counting (counting a specific element)
+      console.count('Titi')
+
+      // timing to know how long things take
+      // first set the timer
+      console.time('fetching data')
+      fetch('https://api.github/users/Laeti-dev')
+        .then(data => data.json())
+        .then(data => {
+          console.timeEnd('fetching data');
+          console.log(data)
+        });
+
+        console.table(dogs)
     </script>
   </body>
 </html>
