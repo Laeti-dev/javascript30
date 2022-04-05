@@ -51,7 +51,7 @@
       </div>
       <div class="item">
         <input type="checkbox">
-        <p> Take a break </p>
+        <p> Breath </p>
       </div>
     </div>
     <style>
@@ -103,7 +103,13 @@
       // on a click, check all the box in between
       // so first, let's select our checkbox
       const boxes = document.querySelectorAll('.item input[type="checkbox"]')
-      console.log(boxes)
+      // shift is pressed
+
+      document.addEventListener('keydown', (event) => {
+          if (event.keyCode === 16) {
+            console.log(event.key);
+          }
+        });
 
     </script>
   </body>
