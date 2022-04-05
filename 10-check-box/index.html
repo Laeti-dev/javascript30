@@ -101,10 +101,20 @@
     <script >
       // if their is a checkbox ticked
       // on a click, check all the box in between
-      // so first, let's select our checkbox
+      // so first, let's select our checkboxes
       const boxes = document.querySelectorAll('.item input[type="checkbox"]')
-      // shift is pressed
 
+      // check if a box has been checked
+
+      function handleCheck(event) {
+
+          console.log(event)
+
+      }
+      boxes.forEach(box => {
+        box.addEventListener('click', handleCheck)
+      })
+      // shift is pressed
       document.addEventListener('keydown', (event) => {
           if (event.keyCode === 16) {
             console.log(event.key);
