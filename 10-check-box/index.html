@@ -7,6 +7,7 @@
     <title>Check boxes challenge</title>
   </head>
   <body>
+    <h1>To do list</h1>
     <div class="inbox">
       <div class="item">
         <input type="checkbox">
@@ -53,6 +54,57 @@
         <p> Take a break </p>
       </div>
     </div>
-    <script ></script>
+    <style>
+      body {
+        background-color: azure;
+      }
+
+      h1{
+        text-align: center;
+        color: green;
+      }
+
+      .inbox {
+        color: whitesmoke;
+        font-size: 1.2rem;
+        background-color: rgb(121, 169, 209);
+        max-width: 500px;
+        box-shadow: 8px 8px 0 lightgrey;
+        border-radius: 20px;
+        margin: 48px auto;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .item {
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid #F1F1F1;
+        padding-left: 16px;
+      }
+
+      .item:last-child {
+        border-bottom: 0;
+      }
+
+      input[type="checkbox"] {
+      margin: 20px;
+      }
+
+      p {
+        padding-left: 8px;
+        border-left: 1px solid #D1E2FF;
+        margin: 0;
+        padding: 16px;
+      }
+    </style>
+    <script >
+      // if their is a checkbox ticked
+      // on a click, check all the box in between
+      // so first, let's select our checkbox
+      const boxes = document.querySelectorAll('.item input[type="checkbox"]')
+      console.log(boxes)
+
+    </script>
   </body>
 </html>
