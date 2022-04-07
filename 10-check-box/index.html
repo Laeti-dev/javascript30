@@ -103,23 +103,41 @@
       // on a click, check all the box in between
       // so first, let's select our checkboxes
       const boxes = document.querySelectorAll('.item input[type="checkbox"]')
-
+      // and because we will need to check an event update, let's define a variable
+      let lastChecked;
       // check if a box has been checked
-
       function handleCheck(event) {
+        let inBetween = false
+        // check is the shift key is down
+        // && check it has been checked
+        if (event.shiftKey && this.checked) {
+          // check each checkbox see if a check box has been check (the first one)
+          // define a variable inBetween which will become true if between
+          boxes.forEach(box => {
+            console.log(box);
+            if(box === this || box === lastChecked){
+              inBetween =! inBetween
+              console.log('checking')
+            }
 
-          console.log(event)
+            if(inBetween){
+              box.checked = true;
+            }
+          })
+        }
+        // this line below will allow to assigne the event (check a box) to our input checkbox
+        lastChecked = this;
 
       }
       boxes.forEach(box => {
         box.addEventListener('click', handleCheck)
       })
       // shift is pressed
-      document.addEventListener('keydown', (event) => {
-          if (event.keyCode === 16) {
-            console.log(event.key);
-          }
-        });
+      // document.addEventListener('keydown', (event) => {
+      //     if (event.keyCode === 16) {
+      //       console.log(event.key);
+      //     }
+      //   });
 
     </script>
   </body>
