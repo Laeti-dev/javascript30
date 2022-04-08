@@ -1,0 +1,12 @@
+html {
+  background: rgb(235, 255, 9);
+  background: linear-gradient(48deg, rgba(235, 255, 9, 1) 0%, rgba(24, 191, 203, 0.6545211834733893) 43%, rgba(0, 212, 255, 1) 100%);
+  width: 100vw;
+  height: 100vh;
+}
+
+.player {
+  display: flex;
+  justify-content: center;
+  margin-top: 200px;
+}
