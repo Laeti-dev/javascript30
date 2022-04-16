@@ -1,12 +1,54 @@
-html {
+body {
   background: rgb(235, 255, 9);
   background: linear-gradient(48deg, rgba(235, 255, 9, 1) 0%, rgba(24, 191, 203, 0.6545211834733893) 43%, rgba(0, 212, 255, 1) 100%);
   width: 100vw;
   height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
 }
 
 .player {
+  overflow: hidden;
+  position: relative;
+}
+
+.player__controls{
   display: flex;
-  justify-content: center;
-  margin-top: 200px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  flex-wrap: wrap;
+  transform: translateY(100%) translateY(-5px);
+  transition: all 0.4s;
+}
+
+.player:hover .player__controls{
+  transform: translateY(0);
+}
+
+.player__controls > * {
+  flex: 1;
+}
+
+.player:hover .progress {
+  height: 15px;
+}
+
+.progress {
+  flex: 10;
+  position: relative;
+  flex-basis: 100%;
+  height: 8px;
+  transition: height 0.4s;
+  cursor: ew-resize;
+}
+
+.progress__filled {
+  width: 50%;
+  background: #ffc600;
+  flex: 0;
+  flex-basis: 50%;
 }
