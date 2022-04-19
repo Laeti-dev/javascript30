@@ -63,4 +63,9 @@ ranges.forEach(range =>
 
 video.addEventListener('timeupdate', progression);
 
-progressBar.addEventListener('mousemove', scrub)
+let mouseDown = false;
+progressBar.addEventListener('click', scrub);
+progressBar.addEventListener('mousemove', (event) =>
+  mouseDown && scrub(event));
+progressBar.addEventListener('mousedown',() => mouseDown = true);
+progressBar.addEventListener('mouseup', () => mouseDown = false);
