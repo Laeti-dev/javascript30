@@ -23,6 +23,7 @@ body {
   flex-wrap: wrap;
   transform: translateY(100%) translateY(-5px);
   transition: all 0.4s;
+  background: rgba(0, 0, 0, 0.1);
 }
 
 .player:hover .player__controls{
@@ -51,4 +52,10 @@ body {
   background: #ffc600;
   flex: 0;
   flex-basis: 50%;
+  padding-bottom: 4px;
+}
+
+.player__slider {
+  width: 8px;
+  height: 34px;
 }
