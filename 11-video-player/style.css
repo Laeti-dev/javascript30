@@ -1,3 +1,11 @@
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
 body {
   background: rgb(235, 255, 9);
   background: linear-gradient(48deg, rgba(235, 255, 9, 1) 0%, rgba(24, 191, 203, 0.6545211834733893) 43%, rgba(0, 212, 255, 1) 100%);
@@ -11,8 +19,29 @@ body {
 }
 
 .player {
+  max-width: 750px;
   overflow: hidden;
   position: relative;
+}
+
+.player__video {
+  width: 100%;
+}
+
+.player__button {
+  background: none;
+  border: 0;
+  line-height: 1;
+  color: white;
+  text-align: center;
+  outline: 0;
+  padding: 0;
+  cursor: pointer;
+  max-width: 80px;
+}
+
+.player__button:focus {
+  border-color: #ffc600;
 }
 
 .player__controls{
@@ -20,9 +49,9 @@ body {
   position: absolute;
   bottom: 0;
   width: 100%;
-  flex-wrap: wrap;
   transform: translateY(100%) translateY(-5px);
   transition: all 0.4s;
+  flex-wrap: wrap;
   background: rgba(0, 0, 0, 0.1);
 }
 
@@ -32,10 +61,6 @@ body {
 
 .player__controls > * {
   flex: 1;
-  background-color: transparent;
-  color: whitesmoke;
-  font-size: 1.2rem;
-  border: none;
 }
 
 .player:hover .progress {
@@ -45,10 +70,12 @@ body {
 .progress {
   flex: 10;
   position: relative;
+  display: flex;
   flex-basis: 100%;
   height: 8px;
   transition: height 0.4s;
   cursor: ew-resize;
+
 }
 
 .progress__filled {
@@ -56,7 +83,6 @@ body {
   background: #ffc600;
   flex: 0;
   flex-basis: 50%;
-  padding-bottom: 4px;
 }
 
 .player__slider {

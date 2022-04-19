@@ -32,6 +32,17 @@ function rangeValueUpdate() {
   video[this.name] = this.value
 }
 
+function progression() {
+  const percent = (video.currentTime / video.duration) * 100;
+  progressFilled.style.flexBasis = `${percent}%`;
+}
+
+function scrub(event) {
+  const scrubTime = (event.offsetX / progressBar.offsetWidth) * video.duration;
+  video.currentTime = scrubTime;
+  console.log(event)
+}
+
 // hook up the event listener
 video.addEventListener('click', playVideo);
 toggle.addEventListener('click', playVideo);
@@ -49,3 +60,7 @@ ranges.forEach(range =>
 ranges.forEach(range =>
   range.addEventListener('mousemove', rangeValueUpdate)
 );
+
+video.addEventListener('timeupdate', progression);
+
+progressBar.addEventListener('mousemove', scrub)
