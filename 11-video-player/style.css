@@ -90,3 +90,15 @@ body {
   height: 34px;
   color: white;
 }
+
+img {
+  width: 24px;
+  height: 24px;
+  padding-right: 0;
+  margin-right: 0;
+}
+
+.player:fullscreen {
+  max-width: none;
+  width: 100%;
+}
